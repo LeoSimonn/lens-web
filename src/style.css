@@ -51,10 +51,10 @@ body {
   background-image: url('/fundo-da-placa-de-madeira.jpg');
   background-size: cover;
   background-position: center;
-  overflow: hidden;
+  /* overflow: hidden; Removed to allow border overlap */
 
   /* Solid Brown Border */
-  border: 16px solid #2a1d1a;
+  border: 25px solid #4a342e;
   /* Darker, richer brown */
   border-radius: 4px;
 
@@ -76,6 +76,8 @@ body {
   user-select: none;
   touch-action: none;
   will-change: transform, left, top;
+  z-index: 90;
+
 }
 
 .polaroid-item.dragging {
@@ -91,8 +93,8 @@ body {
   background: #333;
   pointer-events: none;
   display: block;
-  /* Stronger Vintage Filter */
-  filter: contrast(0.8) sepia(0.5) saturate(0.8) brightness(1.1);
+  /* User Recipe: Exp-50, Con+24, Warm+81, Matte */
+  filter: brightness(0.8) contrast(1.2) sepia(0.5) saturate(1.1);
 }
 
 .polaroid-pin {
@@ -106,6 +108,15 @@ body {
   transform: translateX(-50%);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   z-index: 20;
+}
+
+.price-tag {
+  margin-top: 1rem;
+  color: #888;
+  font-size: 0.9rem;
+  font-family: var(--font-main);
+  font-weight: 500;
+  opacity: 0.8;
 }
 
 a {

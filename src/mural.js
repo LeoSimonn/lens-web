@@ -98,12 +98,15 @@ export function initMural() {
             let newLeft = initialLeft + dx;
             let newTop = initialTop + dy;
 
-            // Constraint: Keep inside container
-            const maxLeft = container.clientWidth - div.offsetWidth;
-            const maxTop = container.clientHeight - div.offsetHeight;
+            // Constraint: Keep roughly inside container but allow border overlap
+            // Border is 25px, so allow ~20px overlap
+            const overlap = 20;
 
-            newLeft = Math.max(0, Math.min(maxLeft, newLeft));
-            newTop = Math.max(0, Math.min(maxTop, newTop));
+            const maxLeft = container.clientWidth - div.offsetWidth + overlap;
+            const maxTop = container.clientHeight - div.offsetHeight + overlap;
+
+            newLeft = Math.max(-overlap, Math.min(maxLeft, newLeft));
+            newTop = Math.max(-overlap, Math.min(maxTop, newTop));
 
             div.style.left = `${newLeft}px`;
             div.style.top = `${newTop}px`;
