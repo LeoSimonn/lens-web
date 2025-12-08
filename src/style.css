@@ -412,7 +412,119 @@ model-viewer {
   box-shadow: 0 10px 40px rgba(196, 32, 33, 0.15);
 }
 
-/* Footer */
+/* ... existing features css ... */
+
+/* Video Showcase */
+.video-showcase {
+  padding: 2rem 0 6rem;
+}
+
+.video-wrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid #222;
+  /* User requested smaller size */
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: sepia(0.2);
+  /* Slight consistency tint */
+}
+
+/* App Anatomy */
+.app-anatomy {
+  padding: 4rem 0 8rem;
+}
+
+.anatomy-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  /* responsive */
+}
+
+.anatomy-image {
+  width: 320px;
+  /* Default portrait */
+  filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.05));
+  border-radius: 24px;
+  overflow: hidden;
+  border: 4px solid #222;
+}
+
+.anatomy-image.landscape {
+  width: 700px;
+  /* Wider for landscape screenshot */
+  max-width: 100%;
+}
+
+.ui-screenshot {
+  width: 100%;
+  display: block;
+}
+
+.anatomy-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.anatomy-labels.left {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.anatomy-labels.right {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.label-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  font-family: var(--font-display);
+  letter-spacing: 1px;
+}
+
+.label-line {
+  width: 60px;
+  height: 2px;
+  background: #444;
+}
+
+@media (max-width: 768px) {
+  .anatomy-grid {
+    flex-direction: column;
+  }
+
+  .anatomy-labels {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center !important;
+    align-items: center !important;
+    gap: 1rem;
+  }
+
+  .label-line {
+    display: none;
+  }
+}
+
 footer {
   padding: 4rem 0;
   background: #050505;
