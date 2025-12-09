@@ -22,29 +22,58 @@ export function initMural() {
     // Shuffle array to make it random each time
     photoPaths.sort(() => Math.random() - 0.5);
 
-    // Grid Layout Logic to Spread Items
-    const polaroidWidth = 140;
-    const polaroidHeight = 180;
-    const cols = 5;
-    const rows = 3;
+    // Responsive Configuration
+    const isMobile = window.innerWidth <= 768;
+    const isSmallMobile = window.innerWidth <= 480;
+
+    // Adjust polaroid count and size based on screen
+    let maxPolaroids, polaroidWidth, polaroidHeight, cols, rows;
+
+    if (isSmallMobile) {
+        maxPolaroids = 4;
+        polaroidWidth = 90;
+        polaroidHeight = 120;
+        cols = 2;
+        rows = 2;
+    } else if (isMobile) {
+        maxPolaroids = 6;
+        polaroidWidth = 100;
+        polaroidHeight = 130;
+        cols = 3;
+        rows = 2;
+    } else {
+        maxPolaroids = photoPaths.length;
+        polaroidWidth = 140;
+        polaroidHeight = 180;
+        cols = 5;
+        rows = 3;
+    }
+
     const cellWidth = container.clientWidth / cols;
     const cellHeight = container.clientHeight / rows;
 
-    for (let i = 0; i < photoPaths.length; i++) {
-        createPolaroid(i);
+    // Limit photos to display
+    const photosToShow = photoPaths.slice(0, maxPolaroids);
+
+    for (let i = 0; i < photosToShow.length; i++) {
+        createPolaroid(i, photosToShow);
     }
 
-    function createPolaroid(index) {
+    function createPolaroid(index, photos) {
         const div = document.createElement('div');
         div.classList.add('polaroid-item');
 
+        // Set dynamic size
+        div.style.width = `${polaroidWidth}px`;
+
         // Spread logic: Assign per cell then jitter
         const col = index % cols;
-        const row = Math.floor(index / cols) % rows; // wrap around rows
+        const row = Math.floor(index / cols) % rows;
 
-        // Random jitter within cell
-        const jitterX = (Math.random() - 0.5) * (cellWidth * 0.6);
-        const jitterY = (Math.random() - 0.5) * (cellHeight * 0.6);
+        // Random jitter within cell (less jitter on mobile for cleaner look)
+        const jitterMultiplier = isMobile ? 0.3 : 0.6;
+        const jitterX = (Math.random() - 0.5) * (cellWidth * jitterMultiplier);
+        const jitterY = (Math.random() - 0.5) * (cellHeight * jitterMultiplier);
 
         let left = (col * cellWidth) + (cellWidth / 2) - (polaroidWidth / 2) + jitterX;
         let top = (row * cellHeight) + (cellHeight / 2) - (polaroidHeight / 2) + jitterY;
@@ -53,7 +82,9 @@ export function initMural() {
         left = Math.max(10, Math.min(container.clientWidth - polaroidWidth - 10, left));
         top = Math.max(10, Math.min(container.clientHeight - polaroidHeight - 10, top));
 
-        const rotation = (Math.random() * 40) - 20; // -20 to +20 deg
+        // Less rotation on mobile for cleaner aesthetic
+        const maxRotation = isMobile ? 12 : 20;
+        const rotation = (Math.random() * maxRotation * 2) - maxRotation;
 
         div.style.left = `${left}px`;
         div.style.top = `${top}px`;
@@ -66,42 +97,70 @@ export function initMural() {
 
         // Image
         const img = document.createElement('img');
-        const src = photoPaths[index % photoPaths.length];
-        img.src = src;
+        img.src = photos[index];
         img.classList.add('polaroid-img');
+        img.loading = 'lazy';
         div.appendChild(img);
 
         container.appendChild(div);
 
-        // Drag Logic
+        // Drag Logic (Mouse + Touch)
         let isDragging = false;
         let startX, startY, initialLeft, initialTop;
 
-        div.addEventListener('mousedown', (e) => {
+        // Mouse Events
+        div.addEventListener('mousedown', handleDragStart);
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseup', handleDragEnd);
+
+        // Touch Events for Mobile
+        div.addEventListener('touchstart', handleTouchStart, { passive: false });
+        window.addEventListener('touchmove', handleTouchMove, { passive: false });
+        window.addEventListener('touchend', handleDragEnd);
+
+        function handleDragStart(e) {
             isDragging = true;
             div.classList.add('dragging');
             startX = e.clientX;
             startY = e.clientY;
             initialLeft = div.offsetLeft;
             initialTop = div.offsetTop;
-
-            // Randomize rotation slightly on pick up
             div.style.transform = `rotate(${rotation + (Math.random() * 6 - 3)}deg) scale(1.1)`;
-        });
+        }
 
-        window.addEventListener('mousemove', (e) => {
+        function handleTouchStart(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            isDragging = true;
+            div.classList.add('dragging');
+            startX = touch.clientX;
+            startY = touch.clientY;
+            initialLeft = div.offsetLeft;
+            initialTop = div.offsetTop;
+            div.style.transform = `rotate(${rotation + (Math.random() * 4 - 2)}deg) scale(1.08)`;
+        }
+
+        function handleMouseMove(e) {
             if (!isDragging) return;
             e.preventDefault();
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
+            updatePosition(e.clientX, e.clientY);
+        }
+
+        function handleTouchMove(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            updatePosition(touch.clientX, touch.clientY);
+        }
+
+        function updatePosition(clientX, clientY) {
+            const dx = clientX - startX;
+            const dy = clientY - startY;
 
             let newLeft = initialLeft + dx;
             let newTop = initialTop + dy;
 
-            // Constraint: Keep roughly inside container but allow border overlap
-            // Border is 25px, so allow ~20px overlap
-            const overlap = 20;
-
+            const overlap = isMobile ? 10 : 20;
             const maxLeft = container.clientWidth - div.offsetWidth + overlap;
             const maxTop = container.clientHeight - div.offsetHeight + overlap;
 
@@ -110,18 +169,14 @@ export function initMural() {
 
             div.style.left = `${newLeft}px`;
             div.style.top = `${newTop}px`;
-        });
+        }
 
-        window.addEventListener('mouseup', () => {
+        function handleDragEnd() {
             if (isDragging) {
                 isDragging = false;
                 div.classList.remove('dragging');
-                // Snap back scale but keep rotation
                 div.style.transform = `rotate(${rotation}deg) scale(1)`;
             }
-        });
+        }
     }
-
-    // Handle Resize to keep them in bounds roughly? 
-    // For now purely absolute is fine for "messy desk" vibe.
 }
