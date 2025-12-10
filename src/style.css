@@ -689,7 +689,7 @@ model-viewer {
 
 /* Video Showcase */
 .video-showcase {
-  padding: 2rem;
+  padding: 2rem 2rem;
 }
 
 
@@ -743,10 +743,12 @@ model-viewer {
   .device-video {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    left: 6px;
+    width: 96%;
+    height: 95%;
     object-fit: contain;
+    border-radius: 28px;
+
   }
 }
 
@@ -1057,19 +1059,18 @@ nav a:hover::after {
 
   /* Feature Cards - Better Mobile Spacing */
   .features {
-    padding: 4rem 1rem;
+    padding: 4rem 1.5rem;
   }
 
-  .features.container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .features .section-title {
+    padding: 0 0.5rem;
   }
 
   .feature-grid {
     grid-template-columns: 1fr;
     gap: 1.2rem;
     margin-top: 2rem;
-    padding: 0 0.5rem;
+    padding: 0;
   }
 
   .feature-card {
@@ -1206,12 +1207,21 @@ nav a:hover::after {
     font-size: 1.5rem;
   }
 
+  .features {
+    padding: 3rem 1.2rem;
+  }
+
   .feature-card {
-    padding: 1.5rem;
+    padding: 1.3rem 1rem;
+    margin: 0;
   }
 
   .feature-card h3 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
   }
 
   .video-wrapper {
