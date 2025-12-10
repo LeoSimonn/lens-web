@@ -3,20 +3,20 @@ export function initMural() {
     if (!container) return;
 
     const photoPaths = [
-        '/polaroids/aprile0084-2024-10-18-04-16-17-utc.jpg',
-        '/polaroids/asian-lovely-couple-with-shih-tzu-dog-2024-12-13-18-15-18-utc.jpg',
-        '/polaroids/brother-sister-elementary-childhood-kid-playful-co-2025-02-10-09-12-08-utc.jpg',
-        '/polaroids/close-up-of-a-woman-with-brown-eyes-and-a-cat-2025-02-12-03-27-43-utc.jpg',
-        '/polaroids/couple-in-park-in-the-sunshine-2024-11-03-04-19-13-utc.jpg',
-        '/polaroids/cropped-portrait-of-a-cute-little-girl-cuddling-he-2025-04-06-10-53-51-utc.jpg',
-        '/polaroids/cute-ginger-cat-in-xmas-jumper-2025-01-29-08-09-43-utc.jpg',
-        '/polaroids/cute-kitty-2024-10-17-11-44-26-utc.jpg',
-        '/polaroids/female-owner-holding-and-cuddling-border-terrier-p-2024-10-21-04-37-19-utc.jpg',
-        '/polaroids/little-boy-and-girl-with-big-lilac-bouquet-2024-09-19-17-44-51-utc.jpg',
-        '/polaroids/loving-woman-giving-kisses-to-her-adorable-pet-2025-11-30-18-56-33-utc.jpg',
-        '/polaroids/man-and-woman-in-fashionable-clothes-are-hugging-2024-12-04-19-05-11-utc.JPG',
-        '/polaroids/silhouette-2024-12-05-15-43-56-utc.jpg',
-        '/polaroids/vertical-shot-of-lovely-glad-small-child-wears-red-2025-01-24-02-16-32-utc.jpg'
+        '/polaroids_optimized/aprile0084-2024-10-18-04-16-17-utc.jpg',
+        '/polaroids_optimized/asian-lovely-couple-with-shih-tzu-dog-2024-12-13-18-15-18-utc.jpg',
+        '/polaroids_optimized/brother-sister-elementary-childhood-kid-playful-co-2025-02-10-09-12-08-utc.jpg',
+        '/polaroids_optimized/close-up-of-a-woman-with-brown-eyes-and-a-cat-2025-02-12-03-27-43-utc.jpg',
+        '/polaroids_optimized/couple-in-park-in-the-sunshine-2024-11-03-04-19-13-utc.jpg',
+        '/polaroids_optimized/cropped-portrait-of-a-cute-little-girl-cuddling-he-2025-04-06-10-53-51-utc.jpg',
+        '/polaroids_optimized/cute-ginger-cat-in-xmas-jumper-2025-01-29-08-09-43-utc.jpg',
+        '/polaroids_optimized/cute-kitty-2024-10-17-11-44-26-utc.jpg',
+        '/polaroids_optimized/female-owner-holding-and-cuddling-border-terrier-p-2024-10-21-04-37-19-utc.jpg',
+        '/polaroids_optimized/little-boy-and-girl-with-big-lilac-bouquet-2024-09-19-17-44-51-utc.jpg',
+        '/polaroids_optimized/loving-woman-giving-kisses-to-her-adorable-pet-2025-11-30-18-56-33-utc.jpg',
+        '/polaroids_optimized/man-and-woman-in-fashionable-clothes-are-hugging-2024-12-04-19-05-11-utc.jpg',
+        '/polaroids_optimized/silhouette-2024-12-05-15-43-56-utc.jpg',
+        '/polaroids_optimized/vertical-shot-of-lovely-glad-small-child-wears-red-2025-01-24-02-16-32-utc.jpg'
     ];
 
     // Shuffle array to make it random each time

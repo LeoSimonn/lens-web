@@ -62,6 +62,20 @@
       </div>
     </section>
 
+    <!-- Video Showcase in iPhone 16 Frame -->
+    <section class="video-showcase container">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 2rem;">See it in action.</h2>
+      <p class="section-subtitle" style="text-align: center; margin-bottom: 3rem;">Experience the magic of instant
+        photography.</p>
+      <div class="iphone-device-frame">
+        <video autoplay loop muted playsinline class="device-video">
+          <source src="/videoDemo.MOV" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <img src="/iPhone 16 Pro.png" alt="iPhone 16 Pro frame" class="device-frame-image">
+      </div>
+    </section>
+
     <section class="mural-section">
       <div class="container">
         <h2 class="section-title"
@@ -107,72 +121,21 @@
       </div>
     </section>
 
-    <!-- Video Showcase -->
-    <section class="video-showcase container">
-      <div class="video-wrapper">
-        <video autoplay loop muted playsinline poster="app_ui_camera.webp">
-          <!-- Placeholder video URL -->
-          <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-taking-photos-with-a-polaroid-camera-40669-large.mp4"
-            type="video/mp4">
-        </video>
-        <div class="video-overlay">
-          <!-- <h2>Experience the Click</h2> -->
+    <footer>
+      <div class="container footer-content">
+        <div class="logo">Lens.</div>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms & Conditions</a>
+          <a href="support.html">Support</a>
+        </div>
+        <div class="copyright">
+          &copy; 2025 Lens. App. All rights reserved.
         </div>
       </div>
-    </section>
+    </footer>
 
-    <!-- App Anatomy -->
-    <section class="app-anatomy container">
-      <h2 class="section-title" style="text-align: center; margin-bottom: 4rem;">Everything you need.</h2>
-      <div class="anatomy-grid">
-        <!-- Left Labels -->
-        <div class="anatomy-labels left">
-          <div class="label-item">
-            <span class="label-text text-yellow">Flash Toggle</span>
-            <span class="label-line bg-yellow"></span>
-          </div>
-          <div class="label-item">
-            <span class="label-text text-orange">Exposure Dial</span>
-            <span class="label-line bg-orange"></span>
-          </div>
-        </div>
-
-        <!-- Center Image -->
-        <div class="anatomy-image landscape">
-          <img src="camera_landscape.png" alt="Lens App Interface" class="ui-screenshot">
-        </div>
-
-        <!-- Right Labels -->
-        <div class="anatomy-labels right">
-          <div class="label-item">
-            <span class="label-line bg-red"></span>
-            <span class="label-text text-red">Shutter Button</span>
-          </div>
-          <div class="label-item">
-            <span class="label-line bg-orange"></span>
-            <span class="label-text text-orange">Film Gallery</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-content">
-      <div class="logo">Lens.</div>
-      <div class="footer-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms & Conditions</a>
-        <a href="support.html">Support</a>
-      </div>
-      <div class="copyright">
-        &copy; 2025 Lens. App. All rights reserved.
-      </div>
-    </div>
-  </footer>
-
-  <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>

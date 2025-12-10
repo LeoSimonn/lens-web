@@ -198,10 +198,6 @@ body {
 }
 
 /* 2D Mural Styles */
-#mural-canvas-container {
-  display: none;
-  /* Hide old 3D container if it still exists via ID */
-}
 
 .mural-section {
   position: relative;
@@ -216,8 +212,8 @@ body {
   height: 600px;
   margin: 20px auto 60px auto;
   position: relative;
-  /* The Board Background */
-  background-image: url('/fundo-da-placa-de-madeira.jpg');
+  /* The Board Background - Optimized */
+  background-image: url('/wood_bg_optimized.jpg');
   background-size: cover;
   background-position: center;
 
@@ -337,18 +333,7 @@ a {
   text-decoration: none;
 }
 
-.lens-stripes {
-  display: flex;
-  gap: 0;
-  height: 6px;
-  width: 100px;
-  margin: 10px 0 20px 0;
-}
 
-.lens-stripe {
-  flex: 1;
-  height: 100%;
-}
 
 .bg-yellow {
   background-color: var(--accent-yellow);
@@ -390,12 +375,7 @@ a {
   color: var(--accent-red);
 }
 
-.lens-gradient-text {
-  background: linear-gradient(90deg, var(--accent-yellow), var(--accent-orange), var(--accent-red));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+
 
 .lens-border-bottom {
   position: fixed;
@@ -709,26 +689,65 @@ model-viewer {
 
 /* Video Showcase */
 .video-showcase {
-  padding: 2rem 0 6rem;
+  padding: 2rem;
 }
 
-.video-wrapper {
+
+
+/* iPhone Device Frame with PNG Image */
+.iphone-device-frame {
   position: relative;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  border: 1px solid #222;
-  /* User requested smaller size */
-  max-width: 500px;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
+  aspect-ratio: auto;
 }
 
-.video-wrapper video {
+.device-video {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  width: 97%;
+  height: 97%;
+  object-fit: contain;
+  border-radius: 80px;
+  z-index: 1;
+}
+
+.device-frame-image {
+  position: relative;
   width: 100%;
   height: auto;
-  display: block;
-  filter: sepia(0.2);
-  /* Slight consistency tint */
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Responsive PNG Frame */
+@media (max-width: 768px) {
+  .iphone-device-frame {
+    max-width: 95%;
+  }
+
+  .device-video {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 96%;
+    height: 97%;
+    border-radius: 42px;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 480px) {
+  .device-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
 /* App Anatomy */
@@ -1072,7 +1091,7 @@ nav a:hover::after {
 
   /* Mural Section - Enhanced for Mobile */
   .mural-section {
-    padding: 3rem 0;
+    padding: 2rem 0;
   }
 
   .mural-2d-container {
