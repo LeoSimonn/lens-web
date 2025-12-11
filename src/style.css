@@ -29,6 +29,65 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Film Grain Overlay Effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  animation: grain 0.5s steps(10) infinite;
+}
+
+@keyframes grain {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-2%, -2%);
+  }
+
+  20% {
+    transform: translate(2%, 2%);
+  }
+
+  30% {
+    transform: translate(-1%, 1%);
+  }
+
+  40% {
+    transform: translate(1%, -1%);
+  }
+
+  50% {
+    transform: translate(-2%, 2%);
+  }
+
+  60% {
+    transform: translate(2%, -2%);
+  }
+
+  70% {
+    transform: translate(-1%, -1%);
+  }
+
+  80% {
+    transform: translate(1%, 1%);
+  }
+
+  90% {
+    transform: translate(-2%, -1%);
+  }
+}
+
 /* Particle Canvas */
 #particle-canvas {
   position: absolute;
@@ -839,6 +898,188 @@ model-viewer {
   }
 }
 
+/* ========================================
+   NOSTALGIC NEW SECTIONS
+   ======================================== */
+
+/* Nostalgia Quote Section */
+.nostalgia-quote {
+  padding: 6rem 0;
+  position: relative;
+  background: linear-gradient(to bottom, #0a0a0a 0%, #12100f 50%, #0a0a0a 100%);
+  text-align: center;
+  overflow: hidden;
+}
+
+.film-strip-border {
+  height: 30px;
+  background: repeating-linear-gradient(90deg,
+      #1a1a1a 0px,
+      #1a1a1a 20px,
+      #0a0a0a 20px,
+      #0a0a0a 25px,
+      #222 25px,
+      #222 45px,
+      #0a0a0a 45px,
+      #0a0a0a 50px);
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+}
+
+.quote-text {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: #fff;
+  line-height: 1.4;
+  margin: 2rem 0 1.5rem;
+  background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange), var(--accent-red));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.quote-author {
+  color: #666;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+/* How It Works Section */
+.how-it-works {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.step-card {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s ease;
+}
+
+.step-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--accent-orange);
+  box-shadow: 0 20px 40px rgba(225, 106, 47, 0.15);
+}
+
+.step-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.step-title {
+  font-size: 1.5rem;
+  color: var(--accent-yellow);
+  margin-bottom: 1rem;
+}
+
+.step-desc {
+  color: #888;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.4s ease;
+}
+
+.testimonial-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--accent-yellow);
+  box-shadow: 0 15px 30px rgba(232, 185, 49, 0.1);
+}
+
+.stars {
+  color: var(--accent-yellow);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Final CTA Section */
+.final-cta {
+  padding: 8rem 0;
+  position: relative;
+  background: linear-gradient(135deg,
+      rgba(232, 185, 49, 0.08) 0%,
+      rgba(225, 106, 47, 0.08) 50%,
+      rgba(196, 32, 33, 0.08) 100%);
+  text-align: center;
+  overflow: hidden;
+}
+
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
+}
+
+.cta-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cta-subtitle {
+  color: #888;
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.cta-button {
+  font-size: 1.1rem;
+  padding: 1.2rem 2.5rem;
+}
+
 footer {
   padding: 4rem 0;
   background: #050505;
@@ -1141,6 +1382,52 @@ nav a:hover::after {
     font-size: 0.9rem;
   }
 
+  /* New Nostalgic Sections Mobile */
+  .nostalgia-quote {
+    padding: 4rem 0;
+  }
+
+  .quote-text {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .step-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .step-icon {
+    font-size: 3rem;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+
+  .final-cta {
+    padding: 5rem 1.5rem;
+  }
+
+  .cta-title {
+    font-size: 2rem;
+  }
+
+  .cta-subtitle {
+    font-size: 1rem;
+  }
+
   /* Footer */
   .footer-links {
     flex-wrap: wrap;
@@ -1227,6 +1514,35 @@ nav a:hover::after {
   .video-wrapper {
     max-width: 100%;
     border-radius: 16px;
+  }
+
+  /* New Nostalgic Sections Extra Small */
+  .quote-text {
+    font-size: 1.6rem;
+  }
+
+  .step-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .step-title {
+    font-size: 1.2rem;
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
+  }
+
+  .testimonial-text {
+    font-size: 0.9rem;
+  }
+
+  .final-cta {
+    padding: 4rem 1rem;
+  }
+
+  .cta-title {
+    font-size: 1.6rem;
   }
 
   /* Hide orbs on very small screens */
