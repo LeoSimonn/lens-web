@@ -1456,7 +1456,8 @@ nav a:hover::after {
   }
 
   .how-it-works {
-    padding: 3rem 0;
+    padding: 3rem 1.5rem;
+    margin-top: 2rem;
   }
 
   .how-it-works .section-title {
@@ -1468,7 +1469,9 @@ nav a:hover::after {
   }
 
   .testimonials {
-    padding: 3rem 0;
+    padding: 3rem 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .testimonials .section-title {
